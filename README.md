@@ -11,4 +11,4 @@ However, you might have to check the code and change a few things to your liking
 The mrs_key.key file always saves the ID of the most recent survey to compare
 
 Here's a image which shows you what the embedded message in Discord could look like:
-[Preview](https://github.com/Floerianc/Files/blob/main/image.png?raw=true)
+![Preview](https://github.com/Floerianc/Files/blob/main/image.png?raw=true)
