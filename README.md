@@ -12,4 +12,7 @@ The mrs_key.key file always saves the ID of the most recent survey to compare
 
 Here's a image which shows you what the embedded message in Discord could look like:
 ![Preview](https://github.com/Floerianc/DAWUM_AutoUpdateWithImage/blob/main/image.png?raw=true)
+<<<<<<< HEAD
 ![Preview2](https://github.com/Floerianc/DAWUM_AutoUpdateWithImage/blob/main/image2.jpg?raw=true)
+=======
+>>>>>>> 9ded015943059d767adb9be0101851f87b1c4f9b
