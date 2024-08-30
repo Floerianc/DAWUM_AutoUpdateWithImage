@@ -1,5 +1,6 @@
 import requests, datetime, matplotlib.pyplot as plt, time
 from discord_webhook import DiscordWebhook, DiscordEmbed
+from parteienFarbe import partienFarben
 
 DAWUMAPIURL = 'https://api.dawum.de/'
 
@@ -36,12 +37,34 @@ def parseResults(MRS):
         results.append((partyName, abbreviation, percentage))
     return results
 
+def getColors(results):
+    colors = []
+    for result in results:
+        colors.append(partienFarben[result[1]])
+    
+    print(colors)
+    return colors
+
+def getExplode(results):
+    explodes = []
+    for i in range(len(results)):
+        explodes.append(0.03)
+    
+    return explodes
+
+def getTitle():
+    p, i, d, pn, insn, sp = prepareMessage()
+    return f"{pn} Wahlergebnisse ({d})\nInstitut: {insn}"
+
 def buildGraph(results):
     month = datetime.datetime.now().month
     day = datetime.datetime.now().day
     
     names = []
     values = []
+    colors = getColors(results)
+    explodes = getExplode(results)
+    axTitle = getTitle()
 
     for i in range(len(results)):
         names.append(results[i][1])
@@ -49,9 +72,18 @@ def buildGraph(results):
     
     filename = f'image_folder/{day}.{month}.png'
     
-    fig, ax = plt.subplots(figsize=(7.000, 4.000), dpi=100)
-    ax.pie(values, labels=names, autopct='%1.1f%%')
+    plt.rcParams['font.family'] = 'Noto Sans'
     
+    fig, ax = plt.subplots(figsize=(7.000, 4.000), dpi=100)
+    ax.pie(
+        values,
+        labels=names,
+        autopct='%1.1f%%',
+        colors=colors,
+        explode=explodes,
+    )
+    
+    ax.set_title(axTitle)
     plt.savefig(filename, dpi=1000)
     return filename
 
